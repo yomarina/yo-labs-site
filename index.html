@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/favicon.png">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>YO:Labs</title>
 <meta name="description" content="YO:Labs is a distributed team of seasoned professionals, researchers and scientists building the agentic internet. First product: Altgirl.">
@@ -190,13 +192,16 @@ footer a{box-shadow:inset 0 -.4em 0 #d1f931;color:var(--ink)}
 /* шапка зафиксирована: лого, переключатель семьи и разделы всегда сверху */
 body{padding-top:4rem}
 section[id],[id]{scroll-margin-top:4.5rem}
+/* фирменное лого в шапке */
+header .logo{height:3.5rem;width:auto;display:block}
+@media(max-width:700px){header .logo{height:2.4rem}}
 </style>
 </head>
 <body>
 <div class="backdrop"></div><canvas id="px" aria-hidden="true"></canvas><div class="grid"><i></i><i></i><i></i></div>
 
 <header><div class="wrap">
-  <a class="brand" href="#top" aria-label="YO:Labs"><span class="mark"></span><span class="mono faint">Labs</span></a>
+  <a class="brand" href="#top" aria-label="YO:Labs"><img class="logo" src="assets/logo-labs.png" alt="YO:Labs" width="136" height="100"></a>
   <nav class="fam" aria-label="YO family"><b>YO</b><a href="https://yomarina.github.io/yo-labs-site/" class="on" aria-current="page">Labs</a><a href="https://yomarina.github.io/altgirl-site/">Altgirl</a></nav>
   <nav class="mono"><a href="#belief">What we believe</a><a href="#products">Products</a><a href="#research">Research</a><a href="#join">Work with us</a></nav>
   <a class="cta" href="https://yomarina.github.io/altgirl-site/">Meet Altgirl ↗</a>
