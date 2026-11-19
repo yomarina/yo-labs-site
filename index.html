@@ -207,6 +207,10 @@ footer .flogo{height:6.5rem;width:auto;display:block;flex-basis:100%;max-width:m
   radial-gradient(55vw 55vh at 0% 100%,rgba(209,249,49,.55),transparent 70%),
   radial-gradient(40vw 40vh at 70% 85%,rgba(91,69,240,.16),transparent 70%),
   linear-gradient(160deg,#eef4ff 0%,#f4f3ea 45%,#f1f8d8 100%)}
+/* все кнопки одного размера: одна высота, одна минимальная ширина, текст по центру */
+.cta{box-sizing:border-box;height:3rem;min-width:13.5rem;padding:0 1.4rem;justify-content:center;white-space:nowrap;font-size:var(--s);line-height:1}
+.join .cta,.sticky .cta{height:3rem;padding:0 1.4rem}
+@media(max-width:700px){.cta{min-width:0}header .cta{min-width:0;height:2.6rem}}
 </style>
 </head>
 <body>
@@ -223,7 +227,7 @@ footer .flogo{height:6.5rem;width:auto;display:block;flex-basis:100%;max-width:m
   <p class="mono k">YO:Labs · an AI lab for everyday life</p>
   <h1><span class="box">Agents are coming.</span> <span class="hl"><span>We build your side.</span></span></h1>
   <p class="lead">YO:Labs is a distributed team of seasoned professionals, researchers and scientists building the agentic internet. The new era of the internet starts with YO.</p>
-  <div class="row"><a class="cta solid" href="https://yomarina.github.io/altgirl-site/">Meet Altgirl, our first product ↗</a><a class="cta" href="#join">Work with us</a></div>
+  <div class="row"><a class="cta solid" href="https://yomarina.github.io/altgirl-site/">Meet Altgirl ↗</a><a class="cta" href="#join">Work with us</a></div>
 </div></section>
 
 <section id="belief" style="padding-top:2rem"><div class="wrap">
@@ -287,7 +291,7 @@ footer .flogo{height:6.5rem;width:auto;display:block;flex-basis:100%;max-width:m
         <div class="stop"><i></i><b>Belgrade</b><span>next</span></div>
         <div class="stop"><i></i><b>Cyprus</b><span>next</span></div>
       </div>
-      <div><a class="cta solid" href="https://yomarina.github.io/altgirl-site/">Get in line ↗</a></div>
+      <div><a class="cta solid" href="https://yomarina.github.io/altgirl-site/">Get in ↗</a></div>
     </div>
     <div class="pic"><img src="assets/altgirl.webp" alt="Altgirl, the assistant character" loading="lazy"></div>
   </div>
