@@ -197,10 +197,13 @@ header .logo{height:4.4rem;width:auto;display:block}
 @media(max-width:700px){header .logo{height:2.4rem}}
 footer .flogo{height:6.5rem;width:auto;display:block;flex-basis:100%;max-width:max-content;margin-bottom:.5rem}
 @media(max-width:700px){header{height:4.4rem}body{padding-top:4.4rem}header .logo{height:3.6rem}}
+/* эксперимент: гексагональный фон вместо квадратной сетки */
+#hex{position:fixed;inset:0;width:100vw;height:100vh;z-index:-1;pointer-events:none}
+.grid,#px,#nodes{display:none!important}
 </style>
 </head>
 <body>
-<div class="backdrop"></div><canvas id="px" aria-hidden="true"></canvas><div class="grid"><i></i><i></i><i></i></div>
+<div class="backdrop"></div><canvas id="px" aria-hidden="true"></canvas><div class="grid"><i></i><i></i><i></i></div><canvas id="hex" aria-hidden="true" data-line="rgba(20,21,63,.075)" data-fill="rgba(107,87,246,A)" data-glow="rgba(91,69,240,A)"></canvas>
 
 <header><div class="wrap">
   <a class="brand" href="#top" aria-label="YO:Labs"><img class="logo" src="assets/logo-labs.png" alt="YO:Labs" width="136" height="100"></a>
@@ -427,5 +430,6 @@ footer .flogo{height:6.5rem;width:auto;display:block;flex-basis:100%;max-width:m
  if(!reduce)(function loop(t){draw(t);requestAnimationFrame(loop)})(performance.now());else draw(0);
 })();
 </script>
+<script src="assets/hex.js"></script>
 </body>
 </html>
