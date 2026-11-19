@@ -1,7 +1,7 @@
 /* Фон из гексагонов: каждый свой, вместе покрывают всё. Тонкая векторная сетка, тонированные кластеры у краёв,
    под курсором соты подсвечиваются и гаснут шлейфом. Цвета задаются data-атрибутами канваса. */
 (function(){var c=document.getElementById('hex');if(!c)return;var g=c.getContext('2d'),bg=document.createElement('canvas'),b=bg.getContext('2d');
- var D=c.dataset,LINE=D.line,FILL=D.fill,FILL2=D.fill2||D.fill,GLOW=D.glow,PAL=(D.pal||'209,249,49').split('|'),EDGE=D.edge||'255,255,255',EGLOW=D.edgeglow||EDGE;
+ var D=c.dataset,LINE=D.line,FILL=D.fill,FILL2=D.fill2||D.fill,GLOW=D.glow,PAL=(D.pal||'209,249,49').split('|'),EDGE=D.edge||'255,255,255',EGLOW=D.edgeglow||EDGE,TINT=D.tint,EW=+(D.ew||2);
  var W,H,R,dpr,cols,rows,heat={},mx=-1e4,my=-1e4,run=false,
   fine=matchMedia('(pointer:fine)').matches,reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
  function center(i,j){return[i*1.5*R,j*Math.sqrt(3)*R+(i&1?Math.sqrt(3)*R/2:0)]}
@@ -22,8 +22,9 @@
    var gr=g.createRadialGradient(p[0],p[1],0,p[0],p[1],R);gr.addColorStop(0,'rgba('+col+','+(v*.28).toFixed(3)+')');gr.addColorStop(.6,'rgba('+col+','+(v*.08).toFixed(3)+')');gr.addColorStop(1,'rgba('+col+',0)');
    path(p[0],p[1],R-1.5,g);g.fillStyle=gr;g.fill();
    path(p[0],p[1],R*.62,g);g.lineWidth=1;g.strokeStyle='rgba('+col+','+(v*.18).toFixed(3)+')';g.stroke();
+   if(TINT){path(p[0],p[1],R,g);g.fillStyle='rgba('+TINT+','+(v*.32).toFixed(3)+')';g.fill()}
    /* промежутки между сотами: светлый контур и узлы-вершины, как подсветка сетки */
-   path(p[0],p[1],R,g);g.save();g.shadowColor='rgba('+EGLOW+','+(v*.8).toFixed(3)+')';g.shadowBlur=12*v;g.lineWidth=2;g.strokeStyle='rgba('+EDGE+','+(v*.9).toFixed(3)+')';g.stroke();g.restore();
+   path(p[0],p[1],R,g);g.save();g.shadowColor='rgba('+EGLOW+','+(v*.8).toFixed(3)+')';g.shadowBlur=12*v;g.lineWidth=EW;g.strokeStyle='rgba('+EDGE+','+(v*.9).toFixed(3)+')';g.stroke();g.restore();
    g.fillStyle='rgba('+EDGE+','+(v*.85).toFixed(3)+')';for(var t=0;t<6;t++){var an=Math.PI/3*t,z=1.5+v*2;g.fillRect(p[0]+R*Math.cos(an)-z/2,p[1]+R*Math.sin(an)-z/2,z,z)}}
   return alive}
  function tick(){if(mx>-1e3){var i0=Math.round(mx/(1.5*R)),j0=Math.round(my/(Math.sqrt(3)*R));
