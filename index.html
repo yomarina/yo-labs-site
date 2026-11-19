@@ -51,7 +51,7 @@ section{padding-block:7rem}
 .cta.solid{background:var(--lime);color:var(--bg);border-color:var(--lime)}
 .cta:focus-visible{outline:2px solid var(--lime);outline-offset:2px}
 
-header{position:sticky;top:0;z-index:20;height:4rem;display:flex;align-items:center;border-bottom:1px solid var(--line);background:rgba(20,21,64,.7);backdrop-filter:blur(12px)}
+header{position:fixed;top:0;left:0;right:0;z-index:50;height:4rem;display:flex;align-items:center;border-bottom:1px solid var(--line);background:rgba(20,21,64,.7);backdrop-filter:blur(12px)}
 header .wrap{display:flex;align-items:center;gap:2rem;width:100%;max-width:none}
 .brand{display:flex;align-items:center;gap:.7rem}
 .mark{display:block;width:3.06rem;height:1.9rem;background:var(--lime);-webkit-mask:url(assets/yo-labs-logo.webp) left center/contain no-repeat;mask:url(assets/yo-labs-logo.webp) left center/contain no-repeat}
@@ -187,6 +187,9 @@ footer a{box-shadow:inset 0 -.4em 0 #d1f931;color:var(--ink)}
 .fam a.on{background:#d1f931;color:#141540}
 .fam b{color:#d1f931;font-weight:500;padding:0 .35rem 0 .45rem}
 @media(max-width:560px){.fam b{display:none}}
+/* шапка зафиксирована: лого, переключатель семьи и разделы всегда сверху */
+body{padding-top:4rem}
+section[id],[id]{scroll-margin-top:4.5rem}
 </style>
 </head>
 <body>
