@@ -145,6 +145,43 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:1rem 2rem;justify-content:space-bet
 .cardpic .glasswrap.lab{position:absolute;left:0;top:1.5rem;width:min(18rem,70%);margin:0;z-index:1}
 @media(max-width:860px){.cardblk{grid-template-columns:1fr}.cardpic{min-height:16rem}.cardpic img{height:15rem}}
 
+/* ===== YO:Labs — светлая «лаборатория». Общая система с Альтухой (Geist, моно-кикеры, лаймовый скошенный хайлайт, срезанные углы, сетка, лого yo),
+   но инвертирована: бумага + чернила. Блоки про Альтуху — тёмные «окна» в её мир, в её палитре. ===== */
+:root{--bg:#f2f0e9;--ink:#14153f;--dim:rgba(20,21,63,.78);--faint:rgba(20,21,63,.55);--line:rgba(20,21,63,.14);--panel:#faf9f5;--acc:#5b45f0;--grad:linear-gradient(90deg,#5b45f0,#14153f)}
+.backdrop{background:radial-gradient(44rem 34rem at 88% 6%,rgba(107,87,246,.14),transparent 70%),radial-gradient(30rem 26rem at 4% 92%,rgba(209,249,49,.22),transparent 70%),var(--bg)}
+.grid{background:linear-gradient(90deg,rgba(20,21,63,.055) 1px,transparent 1px) 0 0/calc(100% / 24) 100%,linear-gradient(rgba(20,21,63,.055) 1px,transparent 1px) 0 0/100% calc(100vw / 24)}
+.grid i{background:rgba(20,21,63,.08)}
+header{background:rgba(242,240,233,.82)}
+.mark{background:var(--ink)}
+.k{color:var(--acc)}.k:before{background:#d1f931;box-shadow:0 0 0 1.5px var(--ink)}
+.hl{color:#14153f}
+.hero h1 .box{border-color:var(--ink)}
+.cta{color:var(--ink)}.cta:hover{color:#f2f0e9}
+.cta.solid{background:var(--ink);color:#f2f0e9;border-color:var(--ink)}.cta.solid:hover{background:var(--acc);border-color:var(--acc)}
+.panel{box-shadow:0 1px 0 rgba(20,21,63,.04)}
+.tag.live{color:var(--acc);border-color:rgba(91,69,240,.45)}.tag.live:before{background:var(--acc)}
+.tag.build{color:var(--acc)}
+.ticks li:before{color:var(--acc)}
+.path{border-left-color:var(--acc)}.path>div:before{background:var(--acc)}.path>div.next:before{background:#d1f931;box-shadow:0 0 0 1.5px var(--ink)}
+.path>div.star:before{background:none;border-color:var(--acc)}
+.join .go{color:var(--acc)}.join>a:hover{border-color:var(--acc)}
+.flow .st{background:rgba(20,21,63,.03)}.flow .st i{background:rgba(20,21,63,.08)}
+.flow .st.bad{color:#c81e4a}.flow .st.bad i{background:rgba(200,30,74,.12)}
+.flow .st.ok{color:var(--ink);background:#d1f931;border-color:var(--ink);box-shadow:.4rem .4rem 0 var(--ink)}
+.route:before{background:repeating-linear-gradient(90deg,var(--acc) 0 6px,transparent 6px 11px)}.route:after{background:var(--acc);box-shadow:none}
+.stop i{border-color:var(--acc);background:var(--bg)}.stop.on i{background:var(--acc);box-shadow:none}.stop.on b{color:var(--acc)}
+/* окна в мир Альтухи: её ночная палитра */
+.prod,.cardblk,.night{--bg:#141540;--ink:#f6f7fb;--dim:rgba(246,247,251,.8);--faint:rgba(246,247,251,.56);--line:rgba(233,229,255,.16);--acc:#d1f931;--grad:linear-gradient(90deg,#d1f931,#6b57f6);
+  background:radial-gradient(36rem 26rem at 80% 20%,rgba(107,87,246,.45),transparent 70%),#141540;color:var(--ink);border-color:#141540}
+.prod .cta.solid,.cardblk .cta.solid{background:#d1f931;color:#141540;border-color:#d1f931}
+.prod .k,.cardblk .k{color:#d1f931}
+/* общий элемент двух сайтов: переключатель семьи YO — одинаковый на Labs и Altgirl */
+.fam{display:inline-flex;align-items:center;gap:2px;padding:3px;background:#141540;border:1px solid rgba(233,229,255,.22);font:500 .7rem/1 "Geist Mono",ui-monospace,monospace;text-transform:uppercase;letter-spacing:.06em;clip-path:polygon(7px 0,100% 0,100% calc(100% - 7px),calc(100% - 7px) 100%,0 100%,0 7px)}
+.fam a{padding:.42rem .6rem;color:rgba(246,247,251,.62);text-decoration:none}
+.fam a:hover{color:#f6f7fb}
+.fam a.on{background:#d1f931;color:#141540}
+.fam b{color:#d1f931;font-weight:500;padding:0 .35rem 0 .45rem}
+@media(max-width:560px){.fam b{display:none}}
 </style>
 </head>
 <body>
@@ -152,6 +189,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:1rem 2rem;justify-content:space-bet
 
 <header><div class="wrap">
   <a class="brand" href="#top" aria-label="YO:Labs"><span class="mark"></span><span class="mono faint">Labs</span></a>
+  <nav class="fam" aria-label="YO family"><b>YO</b><a href="https://yomarina.github.io/yo-labs-site/" class="on" aria-current="page">Labs</a><a href="https://yomarina.github.io/altgirl-site/">Altgirl</a></nav>
   <nav class="mono"><a href="#belief">What we believe</a><a href="#products">Products</a><a href="#research">Research</a><a href="#join">Work with us</a></nav>
   <a class="cta" href="https://yomarina.github.io/altgirl-site/">Meet Altgirl ↗</a>
 </div></header>
@@ -174,14 +212,14 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:1rem 2rem;justify-content:space-bet
       <span class="tag mono plan">Yesterday</span>
       <h3>You go to every website</h3>
       <svg viewBox="0 0 420 220" aria-hidden="true">
-        <g stroke="rgba(246,247,251,.35)" fill="none" stroke-width="1.5">
+        <g stroke="rgba(20,21,63,.3)" fill="none" stroke-width="1.5">
           <line x1="70" y1="110" x2="300" y2="40"/><line x1="70" y1="110" x2="300" y2="90"/><line x1="70" y1="110" x2="300" y2="140"/><line x1="70" y1="110" x2="300" y2="190"/>
         </g>
         <circle cx="60" cy="110" r="26" fill="#6b57f6"/><text x="60" y="114" text-anchor="middle" fill="#fff">you</text>
-        <g fill="rgba(18,19,58,.95)" stroke="rgba(233,229,255,.3)">
+        <g fill="#fff" stroke="rgba(20,21,63,.25)">
           <rect x="300" y="24" width="100" height="32"/><rect x="300" y="74" width="100" height="32"/><rect x="300" y="124" width="100" height="32"/><rect x="300" y="174" width="100" height="32"/>
         </g>
-        <g fill="rgba(246,247,251,.75)"><text x="350" y="45" text-anchor="middle">site</text><text x="350" y="95" text-anchor="middle">app</text><text x="350" y="145" text-anchor="middle">site</text><text x="350" y="195" text-anchor="middle">app</text></g>
+        <g fill="rgba(20,21,63,.7)"><text x="350" y="45" text-anchor="middle">site</text><text x="350" y="95" text-anchor="middle">app</text><text x="350" y="145" text-anchor="middle">site</text><text x="350" y="195" text-anchor="middle">app</text></g>
       </svg>
       <p class="sm faint">A tab and an account for every task. Your attention is the product.</p>
     </div>
@@ -191,11 +229,11 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:1rem 2rem;justify-content:space-bet
       <svg viewBox="0 0 420 220" aria-hidden="true">
         <defs><filter id="rayglow"><feGaussianBlur stdDeviation="2.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
         <circle cx="40" cy="110" r="26" fill="#6b57f6"/><text x="40" y="114" text-anchor="middle" fill="#fff">you</text>
-        <line x1="66" y1="110" x2="142" y2="110" stroke="#f6f7fb" stroke-width="1.5"/>
-        <g stroke="#d1f931" stroke-width="1.6" filter="url(#rayglow)"><line x1="232" y1="110" x2="300" y2="30"/><line x1="232" y1="110" x2="300" y2="70"/><line x1="232" y1="110" x2="300" y2="110"/><line x1="232" y1="110" x2="300" y2="150"/><line x1="232" y1="110" x2="300" y2="190"/></g>
-        <rect x="142" y="80" width="90" height="60" fill="#d1f931"/><text x="187" y="114" text-anchor="middle" fill="#141540">altgirl</text>
-        <g fill="rgba(18,19,58,.95)" stroke="#d1f931"><rect x="300" y="16" width="104" height="28"/><rect x="300" y="56" width="104" height="28"/><rect x="300" y="96" width="104" height="28"/><rect x="300" y="136" width="104" height="28"/><rect x="300" y="176" width="104" height="28"/></g>
-        <g fill="#d1f931"><text x="352" y="34" text-anchor="middle">apps</text><text x="352" y="74" text-anchor="middle">websites</text><text x="352" y="114" text-anchor="middle">fintech</text><text x="352" y="154" text-anchor="middle">services</text><text x="352" y="194" text-anchor="middle">agents</text></g>
+        <line x1="66" y1="110" x2="142" y2="110" stroke="#14153f" stroke-width="1.5"/>
+        <g stroke="#5b45f0" stroke-width="1.6" filter="url(#rayglow)"><line x1="232" y1="110" x2="300" y2="30"/><line x1="232" y1="110" x2="300" y2="70"/><line x1="232" y1="110" x2="300" y2="110"/><line x1="232" y1="110" x2="300" y2="150"/><line x1="232" y1="110" x2="300" y2="190"/></g>
+        <rect x="142" y="80" width="90" height="60" fill="#d1f931" stroke="#14153f" stroke-width="1.5"/><text x="187" y="114" text-anchor="middle" fill="#141540">altgirl</text>
+        <g fill="#fff" stroke="#5b45f0"><rect x="300" y="16" width="104" height="28"/><rect x="300" y="56" width="104" height="28"/><rect x="300" y="96" width="104" height="28"/><rect x="300" y="136" width="104" height="28"/><rect x="300" y="176" width="104" height="28"/></g>
+        <g fill="#5b45f0"><text x="352" y="34" text-anchor="middle">apps</text><text x="352" y="74" text-anchor="middle">websites</text><text x="352" y="114" text-anchor="middle">fintech</text><text x="352" y="154" text-anchor="middle">services</text><text x="352" y="194" text-anchor="middle">agents</text></g>
       </svg>
       <p class="sm faint">You talk to one assistant. She reaches apps, websites, fintech, services and agents for you.</p>
     </div>
@@ -338,7 +376,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:1rem 2rem;justify-content:space-bet
 </div></section>
 
 <footer><div class="wrap">
-  <span class="mono faint">YO:Labs © 2026</span>
+  <span class="mono faint">YO:Labs © 2026 · <a href="https://yomarina.github.io/altgirl-site/">Altgirl, our first product ↗</a></span>
   <span class="sm faint">Altgirl and YO:Account are products of YO:Labs. YO never holds or moves your funds. ID recovery is optional and is not insurance. Cards will be issued by a licensed partner. YO:Labs is not a bank.</span>
 </div></footer>
 <script>
@@ -365,9 +403,9 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:1rem 2rem;justify-content:space-bet
    shuffleNear(now)}}
  function draw(t){g.clearRect(0,0,c.width,c.height);
   cells.forEach(function(p){p.x+=(p.tx-p.x)*.12;p.y+=(p.ty-p.y)*.12;var a=p.a;if(p.t!==null&&!reduce)a=p.a*(.45+.55*Math.pow(Math.sin(t/1600+p.t),2));
-   g.fillStyle='rgba(140,190,255,'+a.toFixed(3)+')';g.fillRect(p.x+1,p.y+1,p.w-2,p.w-2);g.strokeStyle='rgba(170,210,255,'+(a*1.4).toFixed(3)+')';g.strokeRect(p.x+1.5,p.y+1.5,p.w-3,p.w-3)});
+   g.fillStyle='rgba(107,87,246,'+a.toFixed(3)+')';g.fillRect(p.x+1,p.y+1,p.w-2,p.w-2);g.strokeStyle='rgba(107,87,246,'+(a*1.4).toFixed(3)+')';g.strokeRect(p.x+1.5,p.y+1.5,p.w-3,p.w-3)});
   trail=trail.filter(function(q){var age=(t-q.born)/900;if(age>1)return false;if(age<0)return true;var a=.16*(1-age);
-   g.fillStyle='rgba(150,200,255,'+a.toFixed(3)+')';g.fillRect(q.x+1,q.y+1,q.w-2,q.w-2);g.strokeStyle='rgba(190,225,255,'+(a*1.6).toFixed(3)+')';g.strokeRect(q.x+1.5,q.y+1.5,q.w-3,q.w-3);return true})}
+   g.fillStyle='rgba(107,87,246,'+a.toFixed(3)+')';g.fillRect(q.x+1,q.y+1,q.w-2,q.w-2);g.strokeStyle='rgba(107,87,246,'+(a*1.6).toFixed(3)+')';g.strokeRect(q.x+1.5,q.y+1.5,q.w-3,q.w-3);return true})}
  build();addEventListener('resize',build);
  if(fine&&!reduce)addEventListener('pointermove',onMove,{passive:true});
  if(!reduce)(function loop(t){draw(t);requestAnimationFrame(loop)})(performance.now());else draw(0);
