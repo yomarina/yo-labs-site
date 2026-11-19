@@ -23,7 +23,7 @@
    path(p[0],p[1],R-1.5,g);g.fillStyle=gr;g.fill();
    path(p[0],p[1],R*.62,g);g.lineWidth=1;g.strokeStyle='rgba('+col+','+(v*.18).toFixed(3)+')';g.stroke();
    /* промежутки между сотами: светлый контур и узлы-вершины, как подсветка сетки */
-   path(p[0],p[1],R,g);g.save();g.shadowColor='rgba('+EGLOW+','+(v*.8).toFixed(3)+')';g.shadowBlur=8*v;g.lineWidth=1.4;g.strokeStyle='rgba('+EDGE+','+(v*.6).toFixed(3)+')';g.stroke();g.restore();
+   path(p[0],p[1],R,g);g.save();g.shadowColor='rgba('+EGLOW+','+(v*.8).toFixed(3)+')';g.shadowBlur=12*v;g.lineWidth=2;g.strokeStyle='rgba('+EDGE+','+(v*.9).toFixed(3)+')';g.stroke();g.restore();
    g.fillStyle='rgba('+EDGE+','+(v*.85).toFixed(3)+')';for(var t=0;t<6;t++){var an=Math.PI/3*t,z=1.5+v*2;g.fillRect(p[0]+R*Math.cos(an)-z/2,p[1]+R*Math.sin(an)-z/2,z,z)}}
   return alive}
  function tick(){if(mx>-1e3){var i0=Math.round(mx/(1.5*R)),j0=Math.round(my/(Math.sqrt(3)*R));
