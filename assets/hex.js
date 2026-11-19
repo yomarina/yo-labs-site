@@ -7,7 +7,7 @@
  function center(i,j){return[i*1.5*R,j*Math.sqrt(3)*R+(i&1?Math.sqrt(3)*R/2:0)]}
  function path(x,y,r,ctx){ctx.beginPath();for(var k=0;k<6;k++){var a=Math.PI/3*k;ctx[k?'lineTo':'moveTo'](x+r*Math.cos(a),y+r*Math.sin(a))}ctx.closePath()}
  function rnd(s){var x=Math.sin(s*9301+49297)*233280;return x-Math.floor(x)}
- function size(){dpr=Math.min(devicePixelRatio||1,2);W=innerWidth;H=innerHeight;R=Math.max(44,W/17);
+ var lastW=0;function size(){if(innerWidth===lastW&&W)return;lastW=innerWidth;dpr=Math.min(devicePixelRatio||1,2);W=innerWidth;H=Math.max(c.getBoundingClientRect().height,innerHeight);R=Math.max(44,W/17);
   cols=Math.ceil(W/(1.5*R))+2;rows=Math.ceil(H/(Math.sqrt(3)*R))+2;
   [c,bg].forEach(function(x){x.width=W*dpr;x.height=H*dpr});g.setTransform(dpr,0,0,dpr,0,0);b.setTransform(dpr,0,0,dpr,0,0);
   b.clearRect(0,0,W,H);b.lineWidth=1;
