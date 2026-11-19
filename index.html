@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>YO:Labs</title>
+<meta name="description" content="YO:Labs is a distributed team of seasoned professionals, researchers and scientists building the agentic internet. First product: Altgirl.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..800&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* YO:Labs — та же система, что у Альтухи (navy, сетка, лайм, моно), но спокойнее: без летающих игрушек, одна мысль на блок */
+html{font-size:clamp(15px,calc(.6vw + 8px),20px)}
+:root{
+  --bg:#141540; --ink:#f6f7fb; --dim:rgba(246,247,251,.8); --faint:rgba(246,247,251,.56);
+  --line:rgba(233,229,255,.14); --panel:rgba(18,19,58,.92); --lime:#d1f931; --violet:#5b45f0; --violet2:#6b57f6;
+  --grad:linear-gradient(90deg,var(--lime),var(--violet2));
+  --mono:"Geist Mono",ui-monospace,monospace; --sans:"Geist",system-ui,-apple-system,sans-serif;
+  --xl:clamp(2.4rem,5.6vw,5rem); --m:1.0625rem; --s:.8125rem; --pad:2rem;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--bg);scroll-behavior:smooth}
+body{color:var(--ink);font:400 var(--m)/1.55 var(--sans);overflow-x:hidden;background:transparent}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.backdrop{position:fixed;inset:0;z-index:-2;background:radial-gradient(40rem 32rem at 85% 10%,rgba(107,87,246,.32),transparent 70%),radial-gradient(30rem 26rem at 5% 90%,rgba(209,249,49,.08),transparent 70%),var(--bg)}
+.grid{position:fixed;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(90deg,rgba(107,87,246,.13) 1px,transparent 1px) 0 0/calc(100% / 24) 100%,linear-gradient(rgba(107,87,246,.13) 1px,transparent 1px) 0 0/100% calc(100vw / 24)}
+.grid i{position:absolute;top:0;bottom:0;width:1px;background:rgba(233,229,255,.1)}
+.grid i:nth-child(1){left:16.667%}.grid i:nth-child(2){left:50%}.grid i:nth-child(3){left:83.333%}
+.wrap{max-width:74rem;margin:0 auto;padding-left:max(var(--pad),env(safe-area-inset-left));padding-right:max(var(--pad),env(safe-area-inset-right))}
+@media(max-width:700px){:root{--pad:1.1rem}}
+.mono{font-family:var(--mono);text-transform:uppercase;letter-spacing:.05em;font-size:var(--s)}
+.k{color:var(--lime);display:inline-flex;align-items:center;gap:.5rem}
+.k:before{content:"";width:.45rem;height:.45rem;border-radius:50%;background:var(--lime);box-shadow:0 0 10px var(--lime)}
+h1,h2{font-size:var(--xl);font-weight:600;letter-spacing:-.04em;line-height:1.02;text-wrap:balance}
+h3{font-size:var(--m);font-weight:600;line-height:1.3}
+.hl{background:var(--lime);color:var(--bg);padding:0 .16em;display:inline-block;transform:skew(-6deg)}
+.hl>span{display:inline-block;transform:skew(6deg)}
+.dim{color:var(--dim)}.faint{color:var(--faint)}.sm{font-size:var(--s)}
+section{padding-block:7rem}
+@media(max-width:700px){section{padding-block:4.5rem}}
+.head{display:grid;gap:1rem;max-width:46rem;margin-bottom:3rem}
+.panel{background:var(--panel);border:1px solid var(--line);clip-path:polygon(12px 0,100% 0,100% calc(100% - 12px),calc(100% - 12px) 100%,0 100%,0 12px)}
+.tag{display:inline-flex;align-items:center;gap:.4rem;padding:.3rem .55rem;border:1px solid var(--line);justify-self:start;align-self:start}
+.tag.live{color:var(--lime);border-color:rgba(209,249,49,.4)}.tag.live:before{content:"";width:.45rem;height:.45rem;border-radius:50%;background:var(--lime)}
+.tag.build{color:#b9adff;border-color:rgba(107,87,246,.5)}
+.tag.plan{color:var(--faint)}
+.cta{display:inline-flex;gap:.6rem;align-items:center;padding:.85rem 1.2rem;border:1.5px solid transparent;color:var(--ink);font:500 var(--s)/1 var(--mono);text-transform:uppercase;letter-spacing:.05em;
+  background:linear-gradient(var(--bg),var(--bg)) padding-box,var(--grad) border-box;clip-path:polygon(10px 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%,0 10px);transition:background .25s,color .25s}
+.cta:hover{background:var(--grad) padding-box,var(--grad) border-box;color:var(--bg)}
+.cta.solid{background:var(--lime);color:var(--bg);border-color:var(--lime)}
+.cta:focus-visible{outline:2px solid var(--lime);outline-offset:2px}
+
+header{position:sticky;top:0;z-index:20;height:4rem;display:flex;align-items:center;border-bottom:1px solid var(--line);background:rgba(20,21,64,.7);backdrop-filter:blur(12px)}
+header .wrap{display:flex;align-items:center;gap:2rem;width:100%;max-width:none}
+.brand{display:flex;align-items:center;gap:.7rem}
+.mark{display:block;width:3.06rem;height:1.9rem;background:var(--lime);-webkit-mask:url(assets/yo-labs-logo.webp) left center/contain no-repeat;mask:url(assets/yo-labs-logo.webp) left center/contain no-repeat}
+header nav{display:flex;gap:2rem;margin-left:auto}
+header nav a{color:var(--dim)}header nav a:hover{color:var(--lime)}
+@media(max-width:760px){header nav{display:none}header .cta{margin-left:auto}}
+
+/* hero */
+.hero{padding-block:6rem 5rem;min-height:86vh;display:flex;align-items:center}
+.hero .wrap{display:grid;gap:1.6rem;max-width:74rem;width:100%}
+.hero h1{font-size:clamp(2.8rem,7vw,6.4rem);max-width:15ch}
+.hero h1 .box{display:inline-block;padding:.02em .16em .06em;border:1.5px solid var(--violet2);box-shadow:-6px -6px 0 -4.5px var(--lime)}
+.hero p.lead{max-width:36rem;color:var(--dim);font-size:1.15rem}
+.row{display:flex;gap:.75rem;flex-wrap:wrap}
+
+/* diagram */
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+.compare>div{padding:1.5rem;display:grid;gap:1rem;align-content:start}
+.compare svg{width:100%;height:auto}
+.compare svg text{font-family:var(--mono);font-size:13px;letter-spacing:.04em;text-transform:uppercase}
+@media(max-width:860px){.compare{grid-template-columns:1fr}}
+
+/* cards grid */
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1.25rem}
+.cols>div{padding:1.4rem;display:grid;gap:.7rem;align-content:start}
+
+/* products */
+.prod{display:grid;grid-template-columns:1.2fr .8fr;gap:0;overflow:hidden}
+.prod .txt{padding:2rem;display:grid;gap:1rem;align-content:center}
+.prod .pic{position:relative;min-height:22rem;background:radial-gradient(circle at 50% 70%,rgba(107,87,246,.45),transparent 65%);display:flex;align-items:flex-end;justify-content:center}
+.prod .pic img{height:24rem;width:auto;max-width:none}
+@media(max-width:860px){.prod{grid-template-columns:1fr}.prod .pic{min-height:16rem}.prod .pic img{height:16rem}}
+.more{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1.25rem;margin-top:1.25rem}
+.more>*{padding:1.4rem;display:grid;gap:.6rem;align-content:start}
+
+/* research tags */
+.tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:2rem}
+.tags span{font:500 var(--s)/1 var(--mono);text-transform:uppercase;letter-spacing:.05em;padding:.55rem .75rem;border:1px solid var(--line);color:var(--dim)}
+
+/* path */
+.path{display:grid;border-left:1px solid var(--lime);margin-left:.4rem}
+.path>div{display:grid;gap:.25rem;padding:0 0 1.8rem 1.6rem;position:relative}
+.path>div:before{content:"";position:absolute;left:-.42rem;top:.3rem;width:.8rem;height:.8rem;background:var(--lime);clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)}
+.path>div.next:before{background:var(--violet2)}
+.path>div.star:before{background:none;border:1.5px solid var(--lime);clip-path:none;border-radius:50%}
+
+/* join */
+.join{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.25rem}
+.join>a{padding:1.6rem;display:grid;gap:.7rem;align-content:start;transition:border-color .2s}
+.join>a:hover{border-color:var(--lime)}
+.join .go{color:var(--lime)}
+@media(max-width:860px){.join{grid-template-columns:1fr}}
+footer{padding-block:3rem 4rem;border-top:1px solid var(--line)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:1rem 2rem;justify-content:space-between}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+.acc{display:grid;grid-template-columns:1.2fr .8fr;gap:2rem;margin-top:1.25rem;padding:2rem;align-items:center}
+.acc .txt{display:grid;gap:1rem}
+.acc h3.big{font-size:clamp(1.6rem,3vw,2.4rem);letter-spacing:-.03em;line-height:1.1}
+.ticks{list-style:none;display:grid;gap:.6rem}
+.ticks li{display:flex;gap:.6rem;color:var(--dim);font-size:var(--s)}
+.ticks li:before{content:"✦";color:var(--lime)}
+.ticks b{color:var(--ink);font-weight:600}
+.flow{display:grid;justify-items:start;gap:0}
+.flow .st{display:flex;align-items:center;gap:.6rem;padding:.75rem 1rem;border:1px solid var(--line);background:rgba(255,255,255,.03);font:500 var(--s)/1.3 var(--mono);text-transform:uppercase;letter-spacing:.04em;width:100%}
+.flow .st i{font-style:normal;width:1.5rem;height:1.5rem;display:grid;place-items:center;border-radius:50%;background:rgba(233,229,255,.12)}
+.flow .st.bad{color:#ff8fa3}.flow .st.bad i{background:rgba(255,77,109,.2)}
+.flow .st.ok{color:var(--lime);border-color:var(--lime);box-shadow:.4rem .4rem 0 var(--lime)}
+.flow .ln{width:1px;height:1.4rem;background:var(--line);margin-left:1.75rem}
+@media(max-width:860px){.acc{grid-template-columns:1fr}}
+#px{position:fixed;inset:0;width:100vw;height:100vh;z-index:-1;pointer-events:none}
+
+.route{position:relative;display:grid;grid-template-columns:repeat(4,1fr);margin:.4rem 0 .2rem}
+.route:before{content:"";position:absolute;left:.55rem;right:12%;top:.55rem;height:1px;background:repeating-linear-gradient(90deg,var(--lime) 0 6px,transparent 6px 11px)}
+.route:after{content:"";position:absolute;left:.55rem;width:25%;top:.55rem;height:2px;background:var(--lime);box-shadow:0 0 10px var(--lime)}
+.stop{position:relative;display:grid;gap:.25rem;justify-items:start}
+.stop i{width:1.1rem;height:1.1rem;border:1.5px solid var(--lime);background:var(--bg);position:relative;z-index:1;transform:rotate(45deg)}
+.stop.on i{background:var(--lime);box-shadow:0 0 12px var(--lime)}
+.stop b{font:500 var(--s)/1.2 var(--mono);text-transform:uppercase;letter-spacing:.05em;margin-top:.4rem}
+.stop span{font:400 .72rem/1 var(--mono);text-transform:uppercase;color:var(--faint)}
+.stop.on b{color:var(--lime)}
+.glasswrap{position:relative;width:min(30rem,100%);margin:1rem 0 .4rem;animation:cardfloat 6s ease-in-out infinite}
+.glasswrap:before{content:"";position:absolute;inset:3% 2%;border-radius:1.4rem;backdrop-filter:blur(2px);-webkit-backdrop-filter:blur(2px);transform:rotate(-6deg);z-index:-1}
+.glasswrap .ycard{margin:0;width:100%;animation:none;transform:rotate(-6deg);filter:drop-shadow(0 20px 40px rgba(0,0,0,.25))}
+@keyframes cardfloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.cardblk{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.25rem;padding:2rem;align-items:center;overflow:hidden}
+.cardblk .txt{display:grid;gap:1rem}
+.cardblk h3.big{font-size:clamp(1.5rem,2.6vw,2.2rem);letter-spacing:-.03em;line-height:1.1}
+.cardpic{position:relative;min-height:20rem}
+.cardpic img{position:absolute;right:-2rem;bottom:-2rem;height:20rem;width:auto;max-width:none}
+.cardpic .glasswrap.lab{position:absolute;left:0;top:1.5rem;width:min(18rem,70%);margin:0;z-index:1}
+@media(max-width:860px){.cardblk{grid-template-columns:1fr}.cardpic{min-height:16rem}.cardpic img{height:15rem}}
+
+</style>
+</head>
+<body>
+<div class="backdrop"></div><canvas id="px" aria-hidden="true"></canvas><div class="grid"><i></i><i></i><i></i></div>
+
+<header><div class="wrap">
+  <a class="brand" href="#top" aria-label="YO:Labs"><span class="mark"></span><span class="mono faint">Labs</span></a>
+  <nav class="mono"><a href="#belief">What we believe</a><a href="#products">Products</a><a href="#research">Research</a><a href="#join">Work with us</a></nav>
+  <a class="cta" href="https://altgirl.lol">Meet Altgirl ↗</a>
+</div></header>
+
+<section class="hero" id="top"><div class="wrap">
+  <p class="mono k">YO:Labs · an AI lab for everyday life</p>
+  <h1><span class="box">Agents are coming.</span> <span class="hl"><span>We build your side.</span></span></h1>
+  <p class="lead">YO:Labs is a distributed team of seasoned professionals, researchers and scientists building the agentic internet. The new era of the internet starts with YO.</p>
+  <div class="row"><a class="cta solid" href="https://altgirl.lol">Meet Altgirl, our first product ↗</a><a class="cta" href="#join">Work with us</a></div>
+</div></section>
+
+<section id="belief" style="padding-top:2rem"><div class="wrap">
+  <div class="head">
+    <p class="mono k">What we believe</p>
+    <h2>The browser was built for websites. <span class="hl"><span>The next one is for agents.</span></span></h2>
+    <p class="dim">For thirty years you went to every service yourself. Next, the services come to you, as agents, into one window you control.</p>
+  </div>
+  <div class="compare">
+    <div class="panel">
+      <span class="tag mono plan">Yesterday</span>
+      <h3>You go to every website</h3>
+      <svg viewBox="0 0 420 220" aria-hidden="true">
+        <g stroke="rgba(246,247,251,.35)" fill="none" stroke-width="1.5">
+          <line x1="70" y1="110" x2="300" y2="40"/><line x1="70" y1="110" x2="300" y2="90"/><line x1="70" y1="110" x2="300" y2="140"/><line x1="70" y1="110" x2="300" y2="190"/>
+        </g>
+        <circle cx="60" cy="110" r="26" fill="#6b57f6"/><text x="60" y="114" text-anchor="middle" fill="#fff">you</text>
+        <g fill="rgba(18,19,58,.95)" stroke="rgba(233,229,255,.3)">
+          <rect x="300" y="24" width="100" height="32"/><rect x="300" y="74" width="100" height="32"/><rect x="300" y="124" width="100" height="32"/><rect x="300" y="174" width="100" height="32"/>
+        </g>
+        <g fill="rgba(246,247,251,.75)"><text x="350" y="45" text-anchor="middle">site</text><text x="350" y="95" text-anchor="middle">app</text><text x="350" y="145" text-anchor="middle">site</text><text x="350" y="195" text-anchor="middle">app</text></g>
+      </svg>
+      <p class="sm faint">A tab and an account for every task. Your attention is the product.</p>
+    </div>
+    <div class="panel">
+      <span class="tag mono live">Now</span>
+      <h3>One assistant reaches everything</h3>
+      <svg viewBox="0 0 420 220" aria-hidden="true">
+        <defs><filter id="rayglow"><feGaussianBlur stdDeviation="2.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+        <circle cx="40" cy="110" r="26" fill="#6b57f6"/><text x="40" y="114" text-anchor="middle" fill="#fff">you</text>
+        <line x1="66" y1="110" x2="142" y2="110" stroke="#f6f7fb" stroke-width="1.5"/>
+        <g stroke="#d1f931" stroke-width="1.6" filter="url(#rayglow)"><line x1="232" y1="110" x2="300" y2="30"/><line x1="232" y1="110" x2="300" y2="70"/><line x1="232" y1="110" x2="300" y2="110"/><line x1="232" y1="110" x2="300" y2="150"/><line x1="232" y1="110" x2="300" y2="190"/></g>
+        <rect x="142" y="80" width="90" height="60" fill="#d1f931"/><text x="187" y="114" text-anchor="middle" fill="#141540">altgirl</text>
+        <g fill="rgba(18,19,58,.95)" stroke="#d1f931"><rect x="300" y="16" width="104" height="28"/><rect x="300" y="56" width="104" height="28"/><rect x="300" y="96" width="104" height="28"/><rect x="300" y="136" width="104" height="28"/><rect x="300" y="176" width="104" height="28"/></g>
+        <g fill="#d1f931"><text x="352" y="34" text-anchor="middle">apps</text><text x="352" y="74" text-anchor="middle">websites</text><text x="352" y="114" text-anchor="middle">fintech</text><text x="352" y="154" text-anchor="middle">services</text><text x="352" y="194" text-anchor="middle">agents</text></g>
+      </svg>
+      <p class="sm faint">You talk to one assistant. She reaches apps, websites, fintech, services and agents for you.</p>
+    </div>
+  </div>
+  <div class="cols" style="margin-top:1.25rem">
+    <div class="panel"><span class="mono k">Yours</span><h3>Self-sovereign by design</h3><p class="dim sm">Your account, your keys, your recovery. Nobody can switch you off.</p></div>
+    <div class="panel"><span class="mono k">Private</span><h3>On your device where possible</h3><p class="dim sm">Local inference and on-device memory. What your assistant learns about you is not for sale.</p></div>
+    <div class="panel"><span class="mono k">Open</span><h3>Any agent can come in</h3><p class="dim sm">Clubs, campuses, cities and developers bring their own agents. We bring the people.</p></div>
+    <div class="panel"><span class="mono k">Measured by outcomes</span><h3>Things done, not screen time</h3><p class="dim sm">We count what got done for people, not how long they stared at an app.</p></div>
+  </div>
+</div></section>
+
+<section id="products"><div class="wrap">
+  <div class="head">
+    <p class="mono k">Products</p>
+    <h2>We ship <span class="hl"><span>what we research.</span></span></h2>
+  </div>
+  <div class="prod panel">
+    <div class="txt">
+      <span class="tag mono live">First release · Nov 24</span>
+      <h3 style="font-size:1.6rem;letter-spacing:-.02em">Altgirl</h3>
+      <p class="dim">Our consumer app, with a friendly mascot who leads people into the new agentic internet. She’s an AI chat assistant that gets things done: reserves a padel court, orders a taxi or food, reminds you and keeps track of what matters, so you can actually live your life.</p>
+      <div class="route" aria-label="Starting in Da Nang, with Paris, Belgrade and Cyprus next">
+        <div class="stop on"><i></i><b>Da Nang</b><span>Nov 24</span></div>
+        <div class="stop"><i></i><b>Paris</b><span>next</span></div>
+        <div class="stop"><i></i><b>Belgrade</b><span>next</span></div>
+        <div class="stop"><i></i><b>Cyprus</b><span>next</span></div>
+      </div>
+      <div><a class="cta solid" href="https://altgirl.lol">Get in line ↗</a></div>
+    </div>
+    <div class="pic"><img src="assets/altgirl.webp" alt="Altgirl, the assistant character" loading="lazy"></div>
+  </div>
+
+  <div class="acc panel">
+    <div class="txt">
+      <span class="tag mono build">In build · YO:Account</span>
+      <h3 class="big">Lose your phone. <span class="hl"><span>Keep everything.</span></span></h3>
+      <p class="dim">One account for your information and your money, created with Altgirl. Your keys stay yours, and your ID works as a spare key: lose your phone, show your ID on a new one, and you’re back in.</p>
+      <ul class="ticks">
+        <li><b>Self-custody.</b> We never hold or move your funds.</li>
+        <li><b>Your ID is the spare key.</b> Checks by Sumsub, we don’t store your KYC.</li>
+        <li><b>Builders get paid here.</b> Agents that get things done earn to the same account.</li>
+      </ul>
+    </div>
+    <div class="flow" aria-hidden="true">
+      <div class="st bad"><i>✕</i>Phone: stolen</div>
+      <div class="ln"></div>
+      <div class="st"><i>✓</i>ID check on a new phone</div>
+      <div class="ln"></div>
+      <div class="st ok"><i>✦</i>You’re back in · balance where you left it</div>
+    </div>
+  </div>
+
+  <div class="cardblk panel">
+    <div class="txt">
+      <span class="tag mono plan">Pre-order · early Q2 2027</span>
+      <h3 class="big">The Altgirl card. <span class="hl"><span>Every swipe makes her smarter.</span></span></h3>
+      <p class="dim">A card your assistant learns from: the café, the court, the kind of room. Next time, what she finds fits you better. Issued by a licensed partner.</p>
+    </div>
+    <div class="cardpic" aria-hidden="true">
+      <img src="assets/reach.webp" alt="">
+      <div class="glasswrap lab"><svg class="ycard" viewBox="0 0 1000 630" role="img" aria-label="YO:Altgirl card">
+  <defs>
+    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff" stop-opacity=".09"/><stop offset=".5" stop-color="#ffffff" stop-opacity=".04"/><stop offset="1" stop-color="#e9e5ff" stop-opacity=".08"/></linearGradient><linearGradient id="shine" x1="0" y1="0" x2=".6" y2=".6"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+    <linearGradient id="holo" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#4fd6e8"/><stop offset=".3" stop-color="#d1f931"/><stop offset=".55" stop-color="#ff7ad9"/><stop offset=".8" stop-color="#8b6dff"/><stop offset="1" stop-color="#4fd6e8"/></linearGradient>
+    <linearGradient id="edge" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#d1f931"/><stop offset=".5" stop-color="#ff7ad9" stop-opacity=".6"/><stop offset="1" stop-color="#6b57f6"/></linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <clipPath id="cut"><path d="M40 0H910L1000 90V590Q1000 630 960 630H40Q0 630 0 590V40Q0 0 40 0Z"/></clipPath>
+  </defs>
+  <g clip-path="url(#cut)">
+    <rect width="1000" height="630" fill="url(#glass)"/>
+        <polygon points="0,379.5 25,370.9 50,363.1 75,356.4 100,350.8 125,346.4 150,343.3 175,341.4 200,340.7 225,341.2 250,342.7 275,345.1 300,348.2 325,352.0 350,356.1 375,360.3 400,364.5 425,368.4 450,371.8 475,374.6 500,376.5 525,377.4 550,377.2 575,375.8 600,373.2 625,369.3 650,364.2 675,357.9 700,350.6 725,342.4 750,333.3 775,323.7 800,313.6 825,303.4 850,293.2 875,283.2 900,273.7 925,264.8 950,256.8 975,249.7 1000,243.6 1000,299.7 975,305.8 950,313.5 925,322.8 900,333.4 875,344.9 850,357.0 825,369.5 800,381.7 775,393.5 750,404.4 725,414.2 700,422.6 675,429.4 650,434.7 625,438.2 600,440.2 575,440.6 550,439.8 525,437.9 500,435.1 475,431.8 450,428.1 425,424.4 400,420.8 375,417.5 350,414.6 325,412.4 300,410.7 275,409.8 250,409.5 225,410.0 200,411.1 175,412.8 150,415.3 125,418.3 100,422.0 75,426.3 50,431.4 25,437.1 0,443.5" fill="url(#holo)" opacity=".6"/>
+    
+  </g>
+  <path d="M40 0H910L1000 90V590Q1000 630 960 630H40Q0 630 0 590V40Q0 0 40 0Z" fill="none" stroke="rgba(255,255,255,.28)" stroke-width="2"/>
+  <text x="56" y="104" font-family="Geist,Inter,sans-serif" font-weight="800" font-size="74" font-style="italic" fill="#f6f7fb" letter-spacing="-3">yo</text>
+  <text x="890" y="76" text-anchor="end" font-family="Geist Mono,monospace" font-size="22" fill="#f6f7fb" letter-spacing="3">PERSONAL AGENT CARD</text>
+  <text x="890" y="106" text-anchor="end" font-family="Geist Mono,monospace" font-size="18" fill="#d1f931" letter-spacing="3">HOLOGLASS · VIRTUAL</text>
+  <g filter="url(#glow)" stroke="rgba(209,249,49,.75)" stroke-width="2.5" fill="none">
+    <polyline points="178,290 430,290 470,250 700,250"/><circle cx="700" cy="250" r="5" fill="#d1f931"/>
+    <polyline points="178,302 380,302 420,342 610,342"/><circle cx="610" cy="342" r="5" fill="#d1f931"/>
+    <polyline points="122,306 122,352 300,352"/><circle cx="300" cy="352" r="5" fill="#d1f931"/>
+  </g>
+  <rect x="66" y="220" width="112" height="86" rx="14" fill="rgba(226,240,150,.85)"/>
+  <g stroke="rgba(20,21,46,.55)" stroke-width="2">
+    <line x1="104" y1="220" x2="104" y2="306"/><line x1="140" y1="220" x2="140" y2="306"/>
+    <line x1="66" y1="250" x2="104" y2="250"/><line x1="66" y1="276" x2="104" y2="276"/>
+    <line x1="140" y1="250" x2="178" y2="250"/><line x1="140" y1="276" x2="178" y2="276"/>
+  </g>
+  <g stroke="#f6f7fb" stroke-width="4" fill="none" stroke-linecap="round"><path d="M214.2 252.7 A16 16 0 0 1 214.2 273.3"/><path d="M224.9 243.7 A30 30 0 0 1 224.9 282.3"/><path d="M235.7 234.7 A44 44 0 0 1 235.7 291.3"/></g>
+  <text x="64" y="440" font-family="Geist Mono,monospace" font-size="40" fill="#f6f7fb" letter-spacing="4">•••• •••• •••• 0119</text>
+  <text x="64" y="508" font-family="Geist Mono,monospace" font-size="17" fill="rgba(246,247,251,.55)" letter-spacing="3">CARDHOLDER</text>
+  <text x="64" y="566" font-family="Geist Mono,monospace" font-size="44" fill="#f6f7fb" letter-spacing="3">YOUR NAME</text>
+  <text x="810" y="508" text-anchor="end" font-family="Geist Mono,monospace" font-size="15" fill="rgba(246,247,251,.55)" letter-spacing="3">VALID THRU</text>
+  <text x="810" y="548" text-anchor="end" font-family="Geist Mono,monospace" font-size="30" fill="#f6f7fb" letter-spacing="3">12/29</text>
+  <circle cx="888" cy="518" r="54" fill="url(#holo)" opacity=".85"/>
+  <polygon points="888.0,488.0 895.9,507.1 916.5,508.7 900.8,522.2 905.6,542.3 888.0,531.5 870.4,542.3 875.2,522.2 859.5,508.7 880.1,507.1" fill="none" stroke="rgba(255,255,255,.85)" stroke-width="3"/>
+</svg></div>
+    </div>
+  </div>
+  <div class="more">
+                <a class="panel" href="#research"><span class="tag mono build">Paper · in progress</span><h3>Liquid Reputation</h3><p class="dim sm">Our research paper on reputation that moves with you: the economics, the maths and the ZK proofs behind it.</p><span class="mono sm" style="color:var(--lime)">Read about the research →</span></a>
+  </div>
+</div></section>
+
+<section id="research" style="padding-top:2rem"><div class="wrap">
+  <div class="head">
+    <p class="mono k">Research</p>
+    <h2>Reputation that <span class="hl"><span>moves with you.</span></span></h2>
+    <p class="dim">Every new app and every new city makes you start from zero. Liquid Reputation is our research into reputation that travels with a person and stays theirs. Paper in progress.</p>
+  </div>
+  <div class="cols">
+    <div class="panel"><h3>Liquid Reputation</h3><p class="dim sm">The economics and maths of portable reputation: how it is earned, proven and priced.</p></div>
+    <div class="panel"><h3>ZK Proofs</h3><p class="dim sm">Zero-knowledge proofs that show what an assistant did, without exposing the person behind it.</p></div>
+    <div class="panel"><h3>Hypergraphs</h3><p class="dim sm">The maths under Liquid Reputation: hypergraphs that model how reputation links people, places and services.</p></div>
+    <div class="panel"><h3>Local inference</h3><p class="dim sm">Personal models that run on your own device and learn from your life, not from everyone's.</p></div>
+  </div>
+  <div class="tags"><span>Agentic internet</span><span>Liquid Reputation</span><span>ZK Proofs</span><span>Hypergraphs</span><span>Local inference</span><span>Self-custody</span><span>Outcomes per second</span></div>
+</div></section>
+
+<section style="padding-top:2rem"><div class="wrap">
+  <div class="head"><p class="mono k">So far</p><h2>Where we are</h2></div>
+  <div class="path">
+    <div><span class="mono faint">Nov 3–6, 2026</span><h3>Pilot 0 at Devcon, Mumbai</h3><p class="dim sm">Our first live test, and a success: guests found side events and signed up for them right in the chat. Thank you to everyone who tried it.</p></div>
+    <div><span class="mono faint">Nov 24, 2026</span><h3>Altgirl, first release in Da Nang</h3><p class="dim sm">With the local sports community as our first testers.</p></div>
+    <div class="next"><span class="mono faint">Next</span><h3>Paris, Belgrade, Cyprus</h3><p class="dim sm">City by city, with locals who tell us what's missing.</p></div>
+    <div class="next"><span class="mono faint">Early Q2 2027 · planned</span><h3>The Altgirl card</h3></div>
+    <div class="star"><span class="mono faint">North star</span><h3>A lifestyle decision model at 20 prompts per second, in every major global city</h3><p class="dim sm">Altgirl in all the world's big international cities, learning from millions of real days. That's what we're building towards.</p></div>
+  </div>
+</div></section>
+
+<section id="join"><div class="wrap">
+  <div class="head"><p class="mono k">Work with us</p><h2>Three doors <span class="hl"><span>in.</span></span></h2></div>
+  <div class="join">
+    <a class="panel" href="mailto:hello@yo.finance?subject=Research"><span class="mono k">Researchers</span><h3>Reputation, proofs, local models</h3><p class="dim sm">We're writing the Liquid Reputation paper and looking for co-authors.</p><span class="mono go">hello@yo.finance →</span></a>
+    <a class="panel" href="mailto:hello@yo.finance?subject=Developers"><span class="mono k">Developers</span><h3>Build an agent, we bring the people</h3><p class="dim sm">Make an agent for your community or service. Altgirl puts it in front of the people who need it.</p><span class="mono go">hello@yo.finance →</span></a>
+    <a class="panel" href="mailto:hello@yo.finance?subject=Partners"><span class="mono k">Partners & enterprise</span><h3>Bring your service into the chat</h3><p class="dim sm">Rides, food, sport, events, payments. Let's plug you in.</p><span class="mono go">hello@yo.finance →</span></a>
+  </div>
+  <p class="sm faint" style="margin-top:1.2rem">hello@yo.finance</p>
+</div></section>
+
+<footer><div class="wrap">
+  <span class="mono faint">YO:Labs © 2026</span>
+  <span class="sm faint">Altgirl and YO:Account are products of YO:Labs. YO never holds or moves your funds. ID recovery is optional and is not insurance. Cards will be issued by a licensed partner. YO:Labs is not a bank.</span>
+</div></footer>
+<script>
+/* фон: светло-голубые полупрозрачные «пиксели» по клеткам сетки, группами у краёв.
+   Под курсором мозаика перебирается: ближние пиксели переезжают на соседние клетки, а курсор оставляет след из вспыхивающих клеток */
+(function(){var c=document.getElementById('px'),g=c.getContext('2d'),cells=[],trail=[],S=0,COLS=24,ROWS=0,mx=-1e4,my=-1e4,lastCell='',
+  reduce=matchMedia('(prefers-reduced-motion: reduce)').matches,fine=matchMedia('(pointer:fine)').matches;
+ function rnd(a,b){return a+Math.random()*(b-a)}
+ function cell(x,y,w,a,t){return{x:x,y:y,tx:x,ty:y,w:w,a:a,t:t,cd:0}}
+ function build(){var d=devicePixelRatio||1,W=innerWidth,H=innerHeight;c.width=W*d;c.height=H*d;g.setTransform(d,0,0,d,0,0);
+  S=W/COLS;ROWS=Math.ceil(H/S);cells=[];
+  var seeds=[[1,3],[22,2],[20,ROWS-3],[2,ROWS-4],[22,Math.round(ROWS/2)]];
+  seeds.forEach(function(p){var n=Math.round(rnd(7,13));for(var i=0;i<n;i++){var x=p[0]+Math.round(rnd(-3,3)),y=p[1]+Math.round(rnd(-2,2));if(x<0||x>=COLS||y<0||y>=ROWS)continue;
+   var half=Math.random()<.35,w=half?S/2:S,ox=half&&Math.random()<.5?S/2:0,oy=half&&Math.random()<.5?S/2:0;
+   cells.push(cell(x*S+ox,y*S+oy,w,rnd(.04,.12),Math.random()<.25?rnd(0,6.28):null))}});
+  for(var i=0;i<10;i++){var cx=Math.random()<.5?Math.floor(rnd(0,4)):Math.floor(rnd(19,24));cells.push(cell(cx*S,Math.floor(rnd(0,ROWS))*S,S/2,rnd(.04,.1),null))}
+ }
+ function shuffleNear(now){cells.forEach(function(p){var cx=p.tx+p.w/2,cy=p.ty+p.w/2,dx=cx-mx,dy=cy-my;
+   if(dx*dx+dy*dy<(S*2.2)*(S*2.2)&&now>p.cd){var step=p.w,dirs=[[1,0],[-1,0],[0,1],[0,-1]],d=dirs[Math.floor(Math.random()*4)];
+    p.tx=Math.max(0,Math.min(innerWidth-p.w,p.tx+d[0]*step));p.ty=Math.max(0,Math.min(innerHeight-p.w,p.ty+d[1]*step));p.cd=now+450}})}
+ function onMove(e){mx=e.clientX;my=e.clientY;var cx=Math.floor(mx/S),cy=Math.floor(my/S),key=cx+':'+cy,now=performance.now();
+  if(key!==lastCell){lastCell=key;trail.push({x:cx*S,y:cy*S,w:S,born:now});
+   if(Math.random()<.6){var nx=cx+(Math.random()<.5?-1:1),ny=cy+(Math.random()<.5?-1:1);trail.push({x:nx*S+(Math.random()<.5?0:S/2),y:ny*S+(Math.random()<.5?0:S/2),w:S/2,born:now+80})}
+   shuffleNear(now)}}
+ function draw(t){g.clearRect(0,0,c.width,c.height);
+  cells.forEach(function(p){p.x+=(p.tx-p.x)*.12;p.y+=(p.ty-p.y)*.12;var a=p.a;if(p.t!==null&&!reduce)a=p.a*(.45+.55*Math.pow(Math.sin(t/1600+p.t),2));
+   g.fillStyle='rgba(140,190,255,'+a.toFixed(3)+')';g.fillRect(p.x+1,p.y+1,p.w-2,p.w-2);g.strokeStyle='rgba(170,210,255,'+(a*1.4).toFixed(3)+')';g.strokeRect(p.x+1.5,p.y+1.5,p.w-3,p.w-3)});
+  trail=trail.filter(function(q){var age=(t-q.born)/900;if(age>1)return false;if(age<0)return true;var a=.16*(1-age);
+   g.fillStyle='rgba(150,200,255,'+a.toFixed(3)+')';g.fillRect(q.x+1,q.y+1,q.w-2,q.w-2);g.strokeStyle='rgba(190,225,255,'+(a*1.6).toFixed(3)+')';g.strokeRect(q.x+1.5,q.y+1.5,q.w-3,q.w-3);return true})}
+ build();addEventListener('resize',build);
+ if(fine&&!reduce)addEventListener('pointermove',onMove,{passive:true});
+ if(!reduce)(function loop(t){draw(t);requestAnimationFrame(loop)})(performance.now());else draw(0);
+})();
+</script>
+</body>
+</html>
