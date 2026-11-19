@@ -199,6 +199,8 @@ footer .flogo{height:6.5rem;width:auto;display:block;flex-basis:100%;max-width:m
 @media(max-width:700px){header{height:4.4rem}body{padding-top:4.4rem}header .logo{height:3.6rem}}
 /* эксперимент: гексагональный фон вместо квадратной сетки */
 #hex{position:fixed;inset:0;width:100vw;height:100vh;z-index:-1;pointer-events:none}
+/* соты видны по краям и растворяются к центру, где текст */
+#hex{-webkit-mask-image:radial-gradient(ellipse 62% 75% at 50% 45%,rgba(0,0,0,.06) 0%,rgba(0,0,0,.12) 45%,rgba(0,0,0,.6) 75%,#000 100%);mask-image:radial-gradient(ellipse 62% 75% at 50% 45%,rgba(0,0,0,.06) 0%,rgba(0,0,0,.12) 45%,rgba(0,0,0,.6) 75%,#000 100%)}
 .grid,#px,#nodes{display:none!important}
 .backdrop{background:
   radial-gradient(60vw 55vh at 100% 0%,rgba(79,150,255,.38),transparent 70%),
