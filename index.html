@@ -53,7 +53,7 @@ section{padding-block:7rem}
 .cta.solid{background:var(--lime);color:var(--bg);border-color:var(--lime)}
 .cta:focus-visible{outline:2px solid var(--lime);outline-offset:2px}
 
-header{position:fixed;top:0;left:0;right:0;z-index:50;height:4rem;display:flex;align-items:center;border-bottom:1px solid var(--line);background:rgba(20,21,64,.7);backdrop-filter:blur(12px)}
+header{position:fixed;top:0;left:0;right:0;z-index:50;height:5.2rem;display:flex;align-items:center;border-bottom:1px solid var(--line);background:rgba(20,21,64,.7);backdrop-filter:blur(12px)}
 header .wrap{display:flex;align-items:center;gap:2rem;width:100%;max-width:none}
 .brand{display:flex;align-items:center;gap:.7rem}
 .mark{display:block;width:3.06rem;height:1.9rem;background:var(--lime);-webkit-mask:url(assets/yo-labs-logo.webp) left center/contain no-repeat;mask:url(assets/yo-labs-logo.webp) left center/contain no-repeat}
@@ -190,11 +190,13 @@ footer a{box-shadow:inset 0 -.4em 0 #d1f931;color:var(--ink)}
 .fam b{color:#d1f931;font-weight:500;padding:0 .35rem 0 .45rem}
 @media(max-width:560px){.fam b{display:none}}
 /* шапка зафиксирована: лого, переключатель семьи и разделы всегда сверху */
-body{padding-top:4rem}
-section[id],[id]{scroll-margin-top:4.5rem}
+body{padding-top:5.2rem}
+section[id],[id]{scroll-margin-top:5.8rem}
 /* фирменное лого в шапке */
-header .logo{height:3.5rem;width:auto;display:block}
+header .logo{height:4.4rem;width:auto;display:block}
 @media(max-width:700px){header .logo{height:2.4rem}}
+footer .flogo{height:6.5rem;width:auto;display:block;flex-basis:100%;max-width:max-content;margin-bottom:.5rem}
+@media(max-width:700px){header{height:4.4rem}body{padding-top:4.4rem}header .logo{height:3.6rem}}
 </style>
 </head>
 <body>
@@ -389,6 +391,7 @@ header .logo{height:3.5rem;width:auto;display:block}
 </div></section>
 
 <footer><div class="wrap">
+  <img class="flogo" src="assets/logo-labs.png" alt="YO:Labs" width="232" height="200" loading="lazy">
   <span class="mono faint">YO:Labs © 2026 · <a href="https://yomarina.github.io/altgirl-site/">Altgirl, our first product ↗</a></span>
   <span class="sm faint">Altgirl and YO:Account are products of YO:Labs. YO never holds or moves your funds. ID recovery is optional and is not insurance. Cards will be issued by a licensed partner. YO:Labs is not a bank.</span>
 </div></footer>
