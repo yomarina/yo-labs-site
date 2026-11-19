@@ -200,10 +200,15 @@ footer .flogo{height:6.5rem;width:auto;display:block;flex-basis:100%;max-width:m
 /* эксперимент: гексагональный фон вместо квадратной сетки */
 #hex{position:fixed;inset:0;width:100vw;height:100vh;z-index:-1;pointer-events:none}
 .grid,#px,#nodes{display:none!important}
+.backdrop{background:
+  radial-gradient(60vw 55vh at 100% 0%,rgba(79,150,255,.38),transparent 70%),
+  radial-gradient(55vw 55vh at 0% 100%,rgba(209,249,49,.55),transparent 70%),
+  radial-gradient(40vw 40vh at 70% 85%,rgba(91,69,240,.16),transparent 70%),
+  linear-gradient(160deg,#eef4ff 0%,#f4f3ea 45%,#f1f8d8 100%)}
 </style>
 </head>
 <body>
-<div class="backdrop"></div><canvas id="px" aria-hidden="true"></canvas><div class="grid"><i></i><i></i><i></i></div><canvas id="hex" aria-hidden="true" data-line="rgba(20,21,63,.075)" data-fill="rgba(107,87,246,A)" data-glow="rgba(91,69,240,A)"></canvas>
+<div class="backdrop"></div><canvas id="px" aria-hidden="true"></canvas><div class="grid"><i></i><i></i><i></i></div><canvas id="hex" aria-hidden="true" data-line="rgba(20,21,63,.09)" data-fill="rgba(79,150,255,A)" data-fill2="rgba(170,225,40,A)" data-glow="rgba(91,69,240,A)"></canvas>
 
 <header><div class="wrap">
   <a class="brand" href="#top" aria-label="YO:Labs"><img class="logo" src="assets/logo-labs.png" alt="YO:Labs" width="136" height="100"></a>
