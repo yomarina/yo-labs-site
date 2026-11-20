@@ -117,12 +117,26 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:1rem 2rem;justify-content:space-bet
 .ticks li{display:flex;gap:.6rem;color:var(--dim);font-size:var(--s)}
 .ticks li:before{content:"✦";color:var(--lime)}
 .ticks b{color:var(--ink);font-weight:600}
-.flow{display:grid;justify-items:start;gap:0}
-.flow .st{display:flex;align-items:center;gap:.6rem;padding:.75rem 1rem;border:1px solid var(--line);background:rgba(255,255,255,.03);font:500 var(--s)/1.3 var(--mono);text-transform:uppercase;letter-spacing:.04em;width:100%}
-.flow .st i{font-style:normal;width:1.5rem;height:1.5rem;display:grid;place-items:center;border-radius:50%;background:rgba(233,229,255,.12)}
-.flow .st.bad{color:#ff8fa3}.flow .st.bad i{background:rgba(255,77,109,.2)}
-.flow .st.ok{color:var(--lime);border-color:var(--lime);box-shadow:.4rem .4rem 0 var(--lime)}
-.flow .ln{width:1px;height:1.4rem;background:var(--line);margin-left:1.75rem}
+/* восстановление доступа: три телефона вместо списка-схемы */
+.recov{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.4rem;align-items:end}
+.dv{position:relative;display:grid;gap:.7rem;justify-items:center}
+.dv p{font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--dim);text-align:center}
+.dv:not(:last-child)::after{content:"→";position:absolute;right:-1.15rem;top:42%;font:500 1rem/1 var(--mono);color:var(--acc)}
+.ph{width:100%;max-width:8.5rem;aspect-ratio:9/17;border-radius:1.4rem;background:#14153f;padding:.32rem;box-shadow:0 18px 40px rgba(20,21,63,.18)}
+.ph .in{height:100%;border-radius:1.1rem;background:linear-gradient(180deg,#25277a,#17184a);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.55rem;color:#fff;text-align:center;padding:.6rem;overflow:hidden}
+.ph .in span{font:500 .6rem/1.2 var(--mono);text-transform:uppercase;letter-spacing:.06em;color:rgba(255,255,255,.6)}
+.lost .ph{transform:rotate(-7deg) translateY(.4rem);opacity:.6;filter:grayscale(.6)}
+.lost .x{width:2.4rem;height:2.4rem;border-radius:50%;display:grid;place-items:center;background:rgba(255,77,109,.18);color:#ff6b8a;font-size:1rem}
+.id{position:relative;width:88%;aspect-ratio:1.58;border-radius:.45rem;background:#f2f0e9;padding:.35rem;display:grid;grid-template-columns:34% 1fr;grid-template-rows:repeat(3,auto) 1fr;column-gap:.35rem;row-gap:.22rem;overflow:hidden}
+.id i{grid-row:1 / 5;border-radius:.25rem;background:#c9c3ff}
+.id s{height:.22rem;border-radius:2px;background:#14153f;opacity:.35}
+.id s:nth-of-type(2){width:70%}.id s:nth-of-type(3){width:50%}
+.id u{position:absolute;left:0;right:0;top:0;height:2px;background:#d1f931;box-shadow:0 0 10px 2px rgba(209,249,49,.8);animation:scan 2.2s cubic-bezier(.22,1,.36,1) infinite alternate}
+@keyframes scan{to{top:calc(100% - 2px)}}
+.ok .ph{box-shadow:.45rem .45rem 0 #d1f931,0 18px 40px rgba(20,21,63,.22)}
+.ok .bal{font:600 1.05rem/1 var(--sans);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.ok em{font:600 .58rem/1 var(--mono);font-style:normal;text-transform:uppercase;letter-spacing:.05em;background:#d1f931;color:#14153f;padding:.35rem .5rem}
+@media(prefers-reduced-motion:reduce){.id u{animation:none;top:45%}}
 @media(max-width:860px){.acc{grid-template-columns:1fr}}
 #px{position:fixed;inset:0;width:100vw;height:100vh;z-index:-1;pointer-events:none}
 
@@ -167,9 +181,6 @@ header{background:rgba(242,240,233,.82)}
 .path{border-left-color:var(--acc)}.path>div:before{background:var(--acc)}.path>div.next:before{background:#d1f931;box-shadow:0 0 0 1.5px var(--ink)}
 .path>div.star:before{background:none;border-color:var(--acc)}
 .join .go{color:var(--acc)}.join>a:hover{border-color:var(--acc)}
-.flow .st{background:rgba(20,21,63,.03)}.flow .st i{background:rgba(20,21,63,.08)}
-.flow .st.bad{color:#c81e4a}.flow .st.bad i{background:rgba(200,30,74,.12)}
-.flow .st.ok{color:var(--ink);background:#d1f931;border-color:var(--ink);box-shadow:.4rem .4rem 0 var(--ink)}
 .route:before{background:repeating-linear-gradient(90deg,var(--acc) 0 6px,transparent 6px 11px)}.route:after{background:var(--acc);box-shadow:none}
 .stop i{border-color:var(--acc);background:var(--bg)}.stop.on i{background:var(--acc);box-shadow:none}.stop.on b{color:var(--acc)}
 /* окна в мир Альтухи: её ночная палитра */
@@ -309,12 +320,10 @@ footer .flogo{height:6.5rem;width:auto;display:block;flex-basis:100%;max-width:m
         <li><b>Builders get paid here.</b> Agents that get things done earn to the same account.</li>
       </ul>
     </div>
-    <div class="flow" aria-hidden="true">
-      <div class="st bad"><i>✕</i>Phone: stolen</div>
-      <div class="ln"></div>
-      <div class="st"><i>✓</i>ID check on a new phone</div>
-      <div class="ln"></div>
-      <div class="st ok"><i>✦</i>You’re back in · balance where you left it</div>
+    <div class="recov" aria-label="Phone stolen, ID check on a new phone, account back with the same balance">
+      <div class="dv lost"><div class="ph"><div class="in"><b class="x">✕</b><span>No signal</span></div></div><p class="mono">01 · Phone gone</p></div>
+      <div class="dv idc"><div class="ph"><div class="in"><div class="id"><i></i><s></s><s></s><s></s><u></u></div><span>Hold your ID</span></div></div><p class="mono">02 · ID check</p></div>
+      <div class="dv ok"><div class="ph"><div class="in"><span>Balance</span><b class="bal">$1,240.50</b><em>✓ Restored</em></div></div><p class="mono">03 · Back in</p></div>
     </div>
   </div>
 
