@@ -43,7 +43,7 @@ section{padding-block:7rem}
 @media(max-width:700px){section{padding-block:4.5rem}}
 .head{display:grid;gap:1rem;max-width:46rem;margin-bottom:3rem}
 .panel{background:var(--panel);border:1px solid var(--line);clip-path:polygon(12px 0,100% 0,100% calc(100% - 12px),calc(100% - 12px) 100%,0 100%,0 12px)}
-.tag{display:inline-flex;align-items:center;gap:.4rem;padding:.3rem .55rem;border:1px solid var(--line);justify-self:start;align-self:start}
+.tag{display:inline-flex;align-items:center;gap:.45rem;padding:0;border:0!important;justify-self:start;align-self:start}
 .tag.live{color:var(--lime);border-color:rgba(209,249,49,.4)}.tag.live:before{content:"";width:.45rem;height:.45rem;border-radius:50%;background:var(--lime)}
 .tag.build{color:#b9adff;border-color:rgba(107,87,246,.5)}
 .tag.plan{color:var(--faint)}
@@ -115,7 +115,10 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:1rem 2rem;justify-content:space-bet
 .acc h3.big{font-size:clamp(1.6rem,3vw,2.4rem);letter-spacing:-.03em;line-height:1.1}
 .ticks{list-style:none;display:grid;gap:.6rem}
 .ticks li{display:flex;gap:.6rem;color:var(--dim);font-size:var(--s)}
-.ticks li:before{content:"✦";color:var(--lime)}
+.ticks li:before{content:"";flex:none;width:.45rem;height:.45rem;margin-top:.45em;background:var(--lime)}
+.tlink{display:inline-flex;align-items:center;height:3rem;font:500 var(--s)/1 var(--mono);text-transform:uppercase;letter-spacing:.05em;color:var(--ink);text-decoration:underline;text-decoration-color:var(--lime);text-decoration-thickness:2px;text-underline-offset:.45em;transition:color .3s}
+.tlink:hover{color:var(--lime)}
+
 .ticks b{color:var(--ink);font-weight:600}
 /* восстановление доступа: три телефона вместо списка-схемы */
 .recov{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.4rem;align-items:end}
@@ -177,7 +180,8 @@ header{background:rgba(242,240,233,.82)}
 .panel{box-shadow:0 1px 0 rgba(20,21,63,.04)}
 .tag.live{color:var(--acc);border-color:rgba(91,69,240,.45)}.tag.live:before{background:var(--acc)}
 .tag.build{color:var(--acc)}
-.ticks li:before{color:var(--acc)}
+.ticks li:before{background:var(--acc)}
+.tlink{color:var(--ink);text-decoration-color:var(--acc)}.tlink:hover{color:var(--acc)}
 .path{border-left-color:var(--acc)}.path>div:before{background:var(--acc)}.path>div.next:before{background:#d1f931;box-shadow:0 0 0 1.5px var(--ink)}
 .path>div.star:before{background:none;border-color:var(--acc)}
 .join .go{color:var(--acc)}.join>a:hover{border-color:var(--acc)}
@@ -240,7 +244,7 @@ footer .flogo{height:6.5rem;width:auto;display:block;flex-basis:100%;max-width:m
 
   <h1><span class="box">Agents are coming.</span> <span class="hl"><span>We build your side.</span></span></h1>
   <p class="lead">YO:Labs is a distributed team of seasoned professionals, researchers and scientists building the agentic internet. The new era of the internet starts with YO.</p>
-  <div class="row"><a class="cta solid" href="https://yomarina.github.io/altgirl-site/">Meet Altgirl ↗</a><a class="cta" href="#join">Work with us</a></div>
+  <div class="row"><a class="cta solid" href="https://yomarina.github.io/altgirl-site/">Meet Altgirl ↗</a><a class="tlink" href="#join">Work with us</a></div>
 </div></section>
 
 <section id="belief" style="padding-top:2rem"><div class="wrap">
